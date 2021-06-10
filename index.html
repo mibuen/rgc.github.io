@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="./css/materialize.min.css">
+  <title>RGC Ingenieria</title>
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper ">
+      <a href="./index.html" class="brand-logo" style="margin-top: 10px;"><img src="./img/logorgc.png" alt="RGC"
+          width="100"></a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down app-menu">
+        <li><a href="proyecto" class="proyecto">Agregar Proyecto</a></li>
+        <li><a href="listado" class="listado">Lista proyectos</a></li>
+        <li><a href="subir" class="subir">Subir Fotos</a></li>
+        <li><a href="reporte" class="reporte">Reporte</a></li>
+      </ul>
+    </div>
+  </nav>
+  <ul class="sidenav app-menu" id="mobile-demo">
+    <li><a href="proyecto" class="proyecto">Agregar Proyecto</a></li>
+    <li><a href="listado" class="listado">Lista proyectos</a></li>
+    <li><a href="subir" class="subir">Subir Fotos</a></li>
+    <li><a href="reporte" class="reporte">Reporte</a></li>
+  </ul>
+  <!-- Main Content -->
+  <div class="container" id="main-container">
+  </div>
+  <script src="./scripts/materialize/materialize.min.js"></script>
+  <script type="module" src="./scripts/main.js"></script>
+
+</body>
+
+</html>
