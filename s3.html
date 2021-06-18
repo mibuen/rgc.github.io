@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text" name="proyectoId" id="">
+  <label for="proyectoId">Proyecto Num:</label>
+  <input type="file" name="" id="sample" accept="image/*">
+  <script>
+    const myFile = document.getElementById('sample')
+
+    myFile.addEventListener('change', async (e) => {
+      const proyectoId = document.querySelector('input[name="proyectoId"]').value;
+      console.log(proyectoId)
+      console.log(myFile.files)
+      //const proyectoId = "123";
+      const [base, ext] = myFile.files[0].type.split('/');
+      console.log('EXT :', ext)
+      const postOptions = {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          proyectoId,
+          ext,
+        })
+      }
+
+
+      const baseUrl = 'http://0.0.0.0:3000/gets3post';
+      const presignedPost = async () => {
+        const data = await fetch(baseUrl, postOptions)
+        const response = await data.json()
+        console.log(response.s3Data)
+        const formData = new FormData();
+        //formData.append("x-amz-meta-user-id", "MIBUENXXX")
+        //formData.append("x-amz-meta-proyectoId", proyectoId)
+        console.log(myFile.files[0].type)
+
+        formData.append("Content-type", myFile.files[0].type)
+        Object.entries(response.s3Data.fields).forEach(([k, v]) => {
+          console.log(k, v)
+          formData.append(k, v)
+        })
+
+        formData.append("file", myFile.files[0])
+        try {
+          const postFile = await fetch(response.s3Data.url, {
+            method: "POST",
+            body: formData
+          })
+          // console.log('finalmente', await postFile.json())
+        } catch (error) {
+          console.log('ERROR', error)
+        }
+
+      }
+      await presignedPost()
+    })
+
+  </script>
+</body>
+
+</html>

@@ -1,24 +1,22 @@
 const htmlUpload = `<div class="row">
-<form class="col s6" id='myForm'>
-
-  <div class="input-field ">
+<form class="" id='myForm'>
+  <div class="input-field col s6">
     <input id="proyectoId" name="proyectoId" type="text" class="validate">
     <label for="proyectoId">Proyecto Id:</label>
   </div>
-  <div class="file-field input-field">
+  <div class="file-field input-field col s12">
     <div class="btn">
       <span>Select Files</span>
-      <input id="inpFile" name="fotoFile" type="file" multiple>
+      <input id="inpFile" name="fotoFile" type="file" accept="image/*">
     </div>
     <div class="file-path-wrapper">
-      <input type="text" class="file-path validate">
+      <input type="text" class="file-path  validate">
     </div>
-
   </div>
-
-  <button class="btn right">Subir</button>
+  <button class="btn right" id="subir">Subir</button>
 </form>
 </div>`;
+
 const crearTabla = (renglones) => `<table class="striped">
 <thead>
   <tr>
@@ -32,11 +30,12 @@ const crearTabla = (renglones) => `<table class="striped">
 </tbody>
 </table>`;
 
-const showFotos = (fotos) => fotos.map((foto) => ` 
+const awsUrl = 'https://s3.amazonaws.com/leonada-de-monterrey';
+const showFotos = (fotos, Id) => fotos.map((foto) => ` 
 <div class="col s12 m6 fotos">
         <div class="card">
           <div class="card-image">
-            <img src="${foto.url}"width="400",height="300">
+            <img src="${awsUrl}/${Id}/${foto.key}" height="400px">
           </div>
           <div class="card-content row">
             <div class="field-input col s12">
@@ -74,7 +73,7 @@ const prjHeader = (prj) => `
       </div>
   </div>
   <div class="row">
-  ${showFotos(prj.fotos).join('')}  
+  ${showFotos(prj.fotos, prj.proyectoId).join('')}  
   </div>  
 `;
 

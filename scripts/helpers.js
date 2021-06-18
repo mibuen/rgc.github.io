@@ -23,6 +23,9 @@ const successToast = (msg) => {
     classes: 'green rounded',
   });
 };
+//++++++++++++++++++++++++++++++++++++
+const getExtension = (data) => data.split('.').pop();
+//++++++++++++++++++++++++++++++++
 const procesarFile = (e, proyectoId) => {
   const imgFiles = e.target.files;
   const formData = new FormData();
@@ -34,5 +37,5 @@ const procesarFile = (e, proyectoId) => {
 };
 
 export {
-  sideNav, errToast, successToast, goHome, isANumber, procesarFile, autoInit,
+  sideNav, errToast, successToast, goHome, isANumber, procesarFile, autoInit, getExtension,
 };

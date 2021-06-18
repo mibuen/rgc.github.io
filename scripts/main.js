@@ -1,6 +1,6 @@
 import { proyecto } from './agregarProyecto.js';
 import { listado } from './listado.js';
-import { subir } from './subirFotos.js';
+import { subirFoto } from './to_post_aws.js';
 import { sideNav, autoInit } from './helpers.js';
 
 autoInit();
@@ -20,6 +20,6 @@ mainTrigger.forEach((ele) => {
     if (x === null) return;
     if (x.className === 'proyecto') return mainContent(proyecto);
     if (x.className === 'listado') return mainContent(listado);
-    if (x.className === 'subir') return mainContent(subir);
+    if (x.className === 'subir') return mainContent(subirFoto);
   });
 });
