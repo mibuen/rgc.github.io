@@ -1,6 +1,6 @@
 import { proyecto } from './agregarProyecto.js';
 import { listado } from './listado.js';
-import { subirFoto } from './to_post_aws.js';
+import { subirFoto } from './v3_file_upload.js';
 import { sideNav, autoInit } from './helpers.js';
 
 autoInit();

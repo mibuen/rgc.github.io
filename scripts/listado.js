@@ -1,5 +1,5 @@
 import { getProyectos, getProyecto, saveToReport } from './fetchDb.js';
-import { errToast } from './helpers.js';
+import { failToast } from './helpers.js';
 import { crearTabla, prjHeader } from './html.js';
 
 const mainContainer = document.getElementById('main-container');
@@ -20,7 +20,7 @@ mainContainer.addEventListener('click', async (e) => {
   if (!x) return;
   const content = await getProyecto(x.innerText);
   if (!content.fotos) {
-    errToast('Proyecto sin fotos');
+    failToast('Proyecto sin fotos');
     return;
   }
   mainContainer.innerHTML = prjHeader(content);

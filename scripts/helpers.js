@@ -6,10 +6,17 @@ const sideNav = () => {
 };
 const autoInit = () => M.AutoInit();
 
-const cleanForm = (form) => form.reset();
 const isANumber = (str) => !/\D/.test(str);
 const goHome = () => window.location = 'index.html';
-const errToast = (msg) => {
+const errToast = (msg, loader) => {
+  M.toast({
+    html: msg,
+    displayLength: 2000,
+    classes: 'red rounded',
+    completeCallback: loader.classList.remove('active'),
+  });
+};
+const failToast = (msg) => {
   M.toast({
     html: msg,
     displayLength: 2000,
@@ -26,16 +33,16 @@ const successToast = (msg) => {
 //++++++++++++++++++++++++++++++++++++
 const getExtension = (data) => data.split('.').pop();
 //++++++++++++++++++++++++++++++++
-const procesarFile = (e, proyectoId) => {
-  const imgFiles = e.target.files;
-  const formData = new FormData();
-  formData.append('proyectoId', proyectoId);
-  for (let i = 0; i < imgFiles.length; i += 1) {
-    formData.append('fotoFile', imgFiles[i]);
-  }
-  return formData;
-};
+function createForm(data, file) {
+  const upForm = new FormData();
+  Object.entries(data).forEach(([k, v]) => {
+    upForm.append(k, v);
+  });
+  upForm.append('Content-type', file.type);
+  upForm.append('file', file);
+  return upForm;
+}
 
 export {
-  sideNav, errToast, successToast, goHome, isANumber, procesarFile, autoInit, getExtension,
+  sideNav, errToast, successToast, goHome, isANumber, autoInit, getExtension, failToast, createForm,
 };

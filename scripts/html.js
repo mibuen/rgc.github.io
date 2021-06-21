@@ -16,6 +16,19 @@ const htmlUpload = `<div class="row">
   <button class="btn right" id="subir">Subir</button>
 </form>
 </div>`;
+const htmlPreload = `<div class="preloader-wrapper big">
+<div class="spinner-layer spinner-blue-only">
+  <div class="circle-clipper left">
+    <div class="circle"></div>
+  </div>
+  <div class="gap-patch">
+    <div class="circle"></div>
+  </div>
+  <div class="circle-clipper right">
+    <div class="circle"></div>
+  </div>
+</div>
+</div>`;
 
 const crearTabla = (renglones) => `<table class="striped">
 <thead>
@@ -102,5 +115,5 @@ const htmlGuardarProyecto = `<div class="row">
 </div>`;
 
 export {
-  htmlUpload, crearTabla, htmlGuardarProyecto, showFotos, prjHeader,
+  htmlUpload, htmlPreload, crearTabla, htmlGuardarProyecto, showFotos, prjHeader,
 };

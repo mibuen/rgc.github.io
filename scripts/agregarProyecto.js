@@ -1,7 +1,7 @@
 import { saveProyecto } from './fetchDb.js';
 import { htmlGuardarProyecto } from './html.js';
 import {
-  errToast, isANumber, successToast,
+  isANumber, successToast, failToast,
 } from './helpers.js';
 
 const proyecto = () => {
@@ -21,7 +21,7 @@ const proyecto = () => {
     };
     if (e.target.closest('button')) {
       if (!isANumber(proyectoId) || nombre === '') {
-        errToast('datos invalidos');
+        failToast('datos invalidos');
         return;
       }
       const respuesta = await saveProyecto(data);
@@ -32,7 +32,7 @@ const proyecto = () => {
         mainForm.reset();
       }
       if (respuesta === 'duplicate project') {
-        errToast(respuesta);
+        failToast(respuesta);
       }
     }
     // mainForm.reset();
